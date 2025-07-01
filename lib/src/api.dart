@@ -251,6 +251,10 @@ class FlutterCallkeep extends EventManager {
       await _channel.invokeMethod<void>(
           'setMutedCall', <String, dynamic>{'uuid': uuid, 'muted': shouldMute});
 
+  Future<void> setSpeaker({required String uuid, required bool isOn}) async =>
+      await _channel.invokeMethod<void>(
+          'setSpeaker', <String, dynamic>{'uuid': uuid, 'isOn': isOn});
+
   Future<void> sendDTMF({required String uuid, required String key}) async =>
       await _channel.invokeMethod<void>(
           'sendDTMF', <String, dynamic>{'uuid': uuid, 'key': key});
