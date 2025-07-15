@@ -20,6 +20,7 @@ static NSString *_Nonnull const CallKeepPerformEndCallAction = @"CallKeepPerform
 static NSString *_Nonnull const CallKeepDidActivateAudioSession = @"CallKeepDidActivateAudioSession";
 static NSString *_Nonnull const CallKeepDidDeactivateAudioSession = @"CallKeepDidDeactivateAudioSession";
 static NSString *_Nonnull const CallKeepDidDisplayIncomingCall = @"CallKeepDidDisplayIncomingCall";
+static NSString *_Nonnull const CallKeepPushPayload = @"CallKeepPushPayload";
 static NSString *_Nonnull const CallKeepDidFailCallAction = @"CallKeepDidFailCallAction";
 static NSString *_Nonnull const CallKeepDidPerformSetMutedCallAction = @"CallKeepDidPerformSetMutedCallAction";
 static NSString *_Nonnull const CallKeepPerformPlayDTMFCallAction = @"CallKeepDidPerformDTMFAction";

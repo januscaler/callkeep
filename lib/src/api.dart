@@ -47,8 +47,10 @@ class FlutterCallkeep extends EventManager {
     if (isIOS) {
       return;
     }
-    return _channel
-        .invokeMethod<void>('registerPhoneAccount', <String, dynamic>{});
+    return _channel.invokeMethod<void>(
+      'registerPhoneAccount',
+      <String, dynamic>{},
+    );
   }
 
   Future<void> registerAndroidEvents() async {
@@ -58,9 +60,7 @@ class FlutterCallkeep extends EventManager {
     return _channel.invokeMethod<void>('registerEvents', <String, dynamic>{});
   }
 
-  Future<bool> hasDefaultPhoneAccount(
-    Map<String, dynamic> options,
-  ) async {
+  Future<bool> hasDefaultPhoneAccount(Map<String, dynamic> options) async {
     if (!isIOS) {
       return await _hasDefaultPhoneAccount(options);
     }
@@ -111,15 +111,14 @@ class FlutterCallkeep extends EventManager {
       'handleType': handleType,
       'hasVideo': hasVideo,
       'callerName': callerName,
-      'additionalData': additionalData
+      'additionalData': additionalData,
     });
   }
 
   Future<void> answerIncomingCall(String uuid) async {
-    await _channel.invokeMethod<void>(
-      'answerIncomingCall',
-      <String, dynamic>{'uuid': uuid},
-    );
+    await _channel.invokeMethod<void>('answerIncomingCall', <String, dynamic>{
+      'uuid': uuid,
+    });
   }
 
   Future<void> startCall({
@@ -136,30 +135,36 @@ class FlutterCallkeep extends EventManager {
       'callerName': callerName,
       'handleType': handleType,
       'hasVideo': hasVideo,
-      'additionalData': additionalData
+      'additionalData': additionalData,
     });
   }
 
   Future<void> reportConnectingOutgoingCallWithUUID(String uuid) async {
     //only available on iOS
     if (isIOS) {
-      await _channel.invokeMethod<void>('reportConnectingOutgoingCallWithUUID',
-          <String, dynamic>{'uuid': uuid});
+      await _channel.invokeMethod<void>(
+        'reportConnectingOutgoingCallWithUUID',
+        <String, dynamic>{'uuid': uuid},
+      );
     }
   }
 
   Future<void> reportConnectedOutgoingCallWithUUID(String uuid) async {
     //only available on iOS
     if (isIOS) {
-      await _channel.invokeMethod<void>('reportConnectedOutgoingCallWithUUID',
-          <String, dynamic>{'uuid': uuid});
+      await _channel.invokeMethod<void>(
+        'reportConnectedOutgoingCallWithUUID',
+        <String, dynamic>{'uuid': uuid},
+      );
     }
   }
 
   Future<void> reportStartedCallWithUUID(String uuid) async {
     if (!isIOS) {
       await _channel.invokeMethod<void>(
-          'reportStartedCallWithUUID', <String, dynamic>{'uuid': uuid});
+        'reportStartedCallWithUUID',
+        <String, dynamic>{'uuid': uuid},
+      );
     }
   }
 
@@ -170,11 +175,7 @@ class FlutterCallkeep extends EventManager {
   }) async {
     return await _channel.invokeMethod<void>(
       'reportEndCallWithUUID',
-      <String, dynamic>{
-        'uuid': uuid,
-        'reason': reason,
-        'notify': notify,
-      },
+      <String, dynamic>{'uuid': uuid, 'reason': reason, 'notify': notify},
     );
   }
 
@@ -184,17 +185,21 @@ class FlutterCallkeep extends EventManager {
    */
   Future<void> rejectCall(String uuid) async {
     if (!isIOS) {
-      await _channel
-          .invokeMethod<void>('rejectCall', <String, dynamic>{'uuid': uuid});
+      await _channel.invokeMethod<void>('rejectCall', <String, dynamic>{
+        'uuid': uuid,
+      });
     } else {
-      await _channel
-          .invokeMethod<void>('endCall', <String, dynamic>{'uuid': uuid});
+      await _channel.invokeMethod<void>('endCall', <String, dynamic>{
+        'uuid': uuid,
+      });
     }
   }
 
   Future<bool> isCallActive(String uuid) async {
-    var resp = await _channel
-        .invokeMethod<bool>('isCallActive', <String, dynamic>{'uuid': uuid});
+    var resp = await _channel.invokeMethod<bool>(
+      'isCallActive',
+      <String, dynamic>{'uuid': uuid},
+    );
     if (resp != null) {
       return resp;
     }
@@ -202,8 +207,10 @@ class FlutterCallkeep extends EventManager {
   }
 
   Future<List<String>> activeCalls() async {
-    var resp = await _channel
-        .invokeMethod<List<Object?>?>('activeCalls', <String, dynamic>{});
+    var resp = await _channel.invokeMethod<List<Object?>?>(
+      'activeCalls',
+      <String, dynamic>{},
+    );
     if (resp != null) {
       var uuids = <String>[];
       resp.forEach((element) {
@@ -216,8 +223,10 @@ class FlutterCallkeep extends EventManager {
     return [];
   }
 
-  Future<void> endCall(String uuid) async => await _channel
-      .invokeMethod<void>('endCall', <String, dynamic>{'uuid': uuid});
+  Future<void> endCall(String uuid) async => await _channel.invokeMethod<void>(
+    'endCall',
+    <String, dynamic>{'uuid': uuid},
+  );
 
   Future<void> endAllCalls() async =>
       await _channel.invokeMethod<void>('endAllCalls', <String, dynamic>{});
@@ -226,8 +235,10 @@ class FlutterCallkeep extends EventManager {
     if (isIOS) {
       return true;
     }
-    var resp = await _channel
-        .invokeMethod<bool>('hasPhoneAccount', <String, dynamic>{});
+    var resp = await _channel.invokeMethod<bool>(
+      'hasPhoneAccount',
+      <String, dynamic>{},
+    );
     if (resp != null) {
       return resp;
     }
@@ -238,26 +249,35 @@ class FlutterCallkeep extends EventManager {
     if (isIOS) {
       return true;
     }
-    var resp = await _channel
-        .invokeMethod<bool>('hasOutgoingCall', <String, dynamic>{});
+    var resp = await _channel.invokeMethod<bool>(
+      'hasOutgoingCall',
+      <String, dynamic>{},
+    );
     if (resp != null) {
       return resp;
     }
     return false;
   }
 
-  Future<void> setMutedCall(
-          {required String uuid, required bool shouldMute}) async =>
-      await _channel.invokeMethod<void>(
-          'setMutedCall', <String, dynamic>{'uuid': uuid, 'muted': shouldMute});
+  Future<void> setMutedCall({
+    required String uuid,
+    required bool shouldMute,
+  }) async => await _channel.invokeMethod<void>(
+    'setMutedCall',
+    <String, dynamic>{'uuid': uuid, 'muted': shouldMute},
+  );
 
   Future<void> setSpeaker({required String uuid, required bool isOn}) async =>
-      await _channel.invokeMethod<void>(
-          'setSpeaker', <String, dynamic>{'uuid': uuid, 'isOn': isOn});
+      await _channel.invokeMethod<void>('setSpeaker', <String, dynamic>{
+        'uuid': uuid,
+        'isOn': isOn,
+      });
 
   Future<void> sendDTMF({required String uuid, required String key}) async =>
-      await _channel.invokeMethod<void>(
-          'sendDTMF', <String, dynamic>{'uuid': uuid, 'key': key});
+      await _channel.invokeMethod<void>('sendDTMF', <String, dynamic>{
+        'uuid': uuid,
+        'key': key,
+      });
 
   Future<void> checkIfBusy() async => isIOS
       ? await _channel.invokeMethod<void>('checkIfBusy', <String, dynamic>{})
@@ -272,8 +292,9 @@ class FlutterCallkeep extends EventManager {
       return;
     }
     // Tell android that we are able to make outgoing calls
-    await _channel.invokeMethod<void>(
-        'setAvailable', <String, dynamic>{'available': available});
+    await _channel.invokeMethod<void>('setAvailable', <String, dynamic>{
+      'available': available,
+    });
   }
 
   Future<void> setCurrentCallActive(String callUUID) async {
@@ -281,25 +302,27 @@ class FlutterCallkeep extends EventManager {
       return;
     }
 
-    await _channel.invokeMethod<void>(
-        'setCurrentCallActive', <String, dynamic>{'uuid': callUUID});
+    await _channel.invokeMethod<void>('setCurrentCallActive', <String, dynamic>{
+      'uuid': callUUID,
+    });
   }
 
   Future<void> updateDisplay({
     required String uuid,
     required String callerName,
     required String handle,
-  }) async =>
-      await _channel.invokeMethod<void>('updateDisplay', <String, dynamic>{
-        'uuid': uuid,
-        'callerName': callerName,
-        'handle': handle
-      });
+  }) async => await _channel.invokeMethod<void>(
+    'updateDisplay',
+    <String, dynamic>{'uuid': uuid, 'callerName': callerName, 'handle': handle},
+  );
 
-  Future<void> setOnHold(
-          {required String uuid, required bool shouldHold}) async =>
-      await _channel.invokeMethod<void>(
-          'setOnHold', <String, dynamic>{'uuid': uuid, 'hold': shouldHold});
+  Future<void> setOnHold({
+    required String uuid,
+    required bool shouldHold,
+  }) async => await _channel.invokeMethod<void>('setOnHold', <String, dynamic>{
+    'uuid': uuid,
+    'hold': shouldHold,
+  });
 
   Future<void> setReachable({bool reachable = true}) async {
     if (isIOS) {
@@ -316,24 +339,27 @@ class FlutterCallkeep extends EventManager {
     required String callerName,
   }) async {
     logger.d(
-        'CallKeep.reportUpdatedCall is deprecated, use CallKeep.updateDisplay instead');
+      'CallKeep.reportUpdatedCall is deprecated, use CallKeep.updateDisplay instead',
+    );
 
     return isIOS
-        ? await _channel
-            .invokeMethod<void>('reportUpdatedCall', <String, dynamic>{
-            'uuid': uuid,
-            'callerName': callerName,
-          })
+        ? await _channel.invokeMethod<void>(
+            'reportUpdatedCall',
+            <String, dynamic>{'uuid': uuid, 'callerName': callerName},
+          )
         : throw Exception(
-            'CallKeep.reportUpdatedCall was called from unsupported OS');
+            'CallKeep.reportUpdatedCall was called from unsupported OS',
+          );
   }
 
   Future<bool> backToForeground() async {
     if (isIOS) {
       return false;
     }
-    var resp = await _channel
-        .invokeMethod<bool>('backToForeground', <String, dynamic>{});
+    var resp = await _channel.invokeMethod<bool>(
+      'backToForeground',
+      <String, dynamic>{},
+    );
     if (resp != null) {
       return resp;
     }
@@ -346,10 +372,12 @@ class FlutterCallkeep extends EventManager {
     }
     if (options['appName'] is String == false) {
       throw Exception(
-          'CallKeep.setup: option "appName" should be of type "string"');
+        'CallKeep.setup: option "appName" should be of type "string"',
+      );
     }
-    return await _channel
-        .invokeMethod<void>('setup', <String, dynamic>{'options': options});
+    return await _channel.invokeMethod<void>('setup', <String, dynamic>{
+      'options': options,
+    });
   }
 
   Future<bool> _setupAndroid({
@@ -392,10 +420,10 @@ class FlutterCallkeep extends EventManager {
     if (isIOS) {
       return true;
     }
-    var resp = await _channel
-        .invokeMethod<bool>('requestPermissions', <String, dynamic>{
-      'additionalPermissions': optionalPermissions ?? [],
-    });
+    var resp = await _channel.invokeMethod<bool>(
+      'requestPermissions',
+      <String, dynamic>{'additionalPermissions': optionalPermissions ?? []},
+    );
     return resp ?? false;
   }
 
@@ -422,13 +450,14 @@ class FlutterCallkeep extends EventManager {
       return;
     }
     await _channel.invokeMethod<void>('foregroundService', <String, dynamic>{
-      'settings': {'foregroundService': settings}
+      'settings': {'foregroundService': settings},
     });
   }
 
   Future<void> eventListener(MethodCall call) async {
     logger.d(
-        '[CallKeep] INFO: received event "${call.method}" ${call.arguments}');
+      '[CallKeep] INFO: received event "${call.method}" ${call.arguments}',
+    );
     final data = call.arguments as Map<dynamic, dynamic>;
     switch (call.method) {
       case 'CallKeepDidReceiveStartCallAction':
@@ -451,6 +480,9 @@ class FlutterCallkeep extends EventManager {
         break;
       case 'CallKeepDidDisplayIncomingCall':
         emit(CallKeepDidDisplayIncomingCall.fromMap(data));
+        break;
+      case 'CallKeepPushPayload':
+        emit(CallKeepPushPayload.fromMap(data));
         break;
       case 'CallKeepDidPerformSetMutedCallAction':
         emit(CallKeepDidPerformSetMutedCallAction.fromMap(data));

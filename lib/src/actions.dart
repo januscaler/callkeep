@@ -67,6 +67,13 @@ class CallKeepDidDisplayIncomingCall extends EventType {
   final CallData callData;
 }
 
+class CallKeepPushPayload extends EventType {
+  CallKeepPushPayload.fromMap(Map<dynamic, dynamic> payload)
+      : payload = payload;
+  final Map<dynamic, dynamic> payload;
+}
+
+
 class CallKeepDidPerformSetMutedCallAction extends EventType {
   CallKeepDidPerformSetMutedCallAction.fromMap(Map<dynamic, dynamic> arguments)
       : callUUID = arguments['callUUID'],

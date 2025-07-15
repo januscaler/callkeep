@@ -260,6 +260,12 @@ static NSObject<CallKeepPushDelegate> *_delegate;
     dic = [_delegate mapPushPayload:dic];
   }
 
+  CallKeep *callKeep = [CallKeep allocWithZone:nil];
+  [callKeep
+      sendEventWithNameWrapper:
+          CallKeepPushPayload  
+                          body:dic];
+
   if (!dic || dic[@"aps"] != nil) {
     NSLog(@"Do not use the 'alert' format for push type %@.", payload.type);
     if (completion != nil) {
@@ -298,6 +304,7 @@ static NSObject<CallKeepPushDelegate> *_delegate;
                                 forType:type
                   withCompletionHandler:^() {
                     NSLog(@"[CallKeep] received");
+          
                   }];
 }
 
