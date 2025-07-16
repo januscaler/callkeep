@@ -326,7 +326,7 @@ public class VoiceConnectionService extends ConnectionService {
         if (!foregroundSettings.isNull("notificationId")) {
             notificationId = foregroundSettings.getInt("notificationId");
         }
-        startForeground(notificationId, notification,ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE);
+        startForeground(notificationId, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
