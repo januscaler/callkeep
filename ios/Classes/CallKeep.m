@@ -261,10 +261,8 @@ static NSObject<CallKeepPushDelegate> *_delegate;
   }
 
   CallKeep *callKeep = [CallKeep allocWithZone:nil];
-  [callKeep
-      sendEventWithNameWrapper:
-          CallKeepPushPayload  
-                          body:dic];
+  [callKeep sendEventWithNameWrapper:CallKeepPushPayload
+                            body:dic];
 
   if (!dic || dic[@"aps"] != nil) {
     NSLog(@"Do not use the 'alert' format for push type %@.", payload.type);
