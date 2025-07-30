@@ -10,7 +10,7 @@ environment:
   sdk: ">=2.12.2 <4.0.0"
 
 dependencies:
-  callkeep:
+  januscaler_callkeep:
     # When depending on this package from a real application you should use:
     #   callkeep: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints

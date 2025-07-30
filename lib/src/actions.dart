@@ -1,4 +1,4 @@
-import 'package:callkeep/src/call.dart';
+import 'package:januscaler_callkeep/src/call.dart';
 import 'event.dart';
 
 class CallKeepDidReceiveStartCallAction extends EventType {
@@ -72,7 +72,6 @@ class CallKeepPushPayload extends EventType {
       : payload = payload;
   final Map<dynamic, dynamic> payload;
 }
-
 
 class CallKeepDidPerformSetMutedCallAction extends EventType {
   CallKeepDidPerformSetMutedCallAction.fromMap(Map<dynamic, dynamic> arguments)

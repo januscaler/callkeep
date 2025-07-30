@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-import 'package:callkeep/callkeep.dart';
+import 'package:januscaler_callkeep/januscaler_callkeep.dart';
 import 'package:logger/logger.dart';
 import 'package:uuid/uuid.dart';
 
