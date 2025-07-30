@@ -1,6 +1,9 @@
 # callkeep
+[![januscaler](https://img.shields.io/badge/powered_by-JanuScaler-b?style=for-the-badge&logo=Januscaler&logoColor=%238884ED&label=Powered%20By&labelColor=white&color=%238884ED)](https://januscaler.com)  
 
-[![Financial Contributors on Open Collective](https://opencollective.com/flutter-webrtc/all/badge.svg?label=financial+contributors)](https://opencollective.com/flutter-webrtc) [![pub package](https://img.shields.io/pub/v/callkeep.svg)](https://pub.dartlang.org/packages/callkeep) [![slack](https://img.shields.io/badge/join-us%20on%20slack-gray.svg?longCache=true&logo=slack&colorB=brightgreen)](https://join.slack.com/t/flutterwebrtc/shared_invite/zt-q83o7y1s-FExGLWEvtkPKM8ku_F8cEQ)
+[![pub package](https://img.shields.io/pub/v/januscaler_callkeep.svg)](https://pub.dartlang.org/packages/januscaler_callkeep)
+
+This is a forked project from [callkeep](https://github.com/flutter-webrtc/callkeep) in an effort to maintain and improve the package for Flutter applications.
 
 - iOS CallKit and Android ConnectionService for Flutter
 - Support FCM and PushKit
@@ -271,8 +274,11 @@ showAlertDialog: () async {
 
 
 ### FAQ
+> I don't receive the incoming call in ios
+Receiving incoming calls in iOS requires the app to be registered with PushKit and to handle VoIP pushes correctly. Ensure that your app is configured to receive VoIP pushes and that you are using the correct payload format for incoming calls.
+also make sure you have not abused the PushKit API, as device may throttle or block your app from receiving VoIP pushes if it detects misuse.
 
-> I don't receive the incoming call
+> I don't receive the incoming call(android)
 
 Receiving incoming calls depends on FCM push messages (or the system you use) for handling the call information and displaying it.
 Remember FCM push messages not always works due to data-only messages are classified as "low priority". Devices can throttle and ignore these messages if your application is in the background, terminated, or a variety of other conditions such as low battery or currently high CPU usage. To help improve delivery, you can bump the priority of messages. Note; this does still not guarantee delivery. More info [here](https://firebase.flutter.dev/docs/messaging/usage/#low-priority-messages)

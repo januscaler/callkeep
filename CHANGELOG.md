@@ -1,7 +1,9 @@
 # Changelog
 
 -----------------------------------------------
-
+[0.4.2]
+* added toggle speaker support 
+* added support for listening PushMessagePayload
 [0.4.1] - 2025.02.03
 
 * [Fix] Updates firebase messaging and android gradle
