@@ -1,6 +1,6 @@
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
-#import <CallKeep.h>
+#import <Januscaler_CallKeep.h>
 
 @implementation AppDelegate
 

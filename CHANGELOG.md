@@ -1,6 +1,8 @@
 # Changelog
 
 -----------------------------------------------
+[0.4.3]
+* fix podspec to januscaler_callkeep 
 [0.4.2]
 * added toggle speaker support 
 * added support for listening PushMessagePayload
